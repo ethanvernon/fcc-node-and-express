@@ -19,7 +19,7 @@ console.log('hello world');
 /** 3) Serve an HTML file */
 
 app.get('/', function(req, res) {
-res.sendFile(__dirname + '/views/index.html');
+  res.sendFile(__dirname + '/views/index.html');
 })
 
 /** 4) Serve static assets  */
@@ -29,7 +29,7 @@ app.use(express.static(__dirname + '/public'));
 /** 5) serve JSON on a specific route */
 
 app.get('/json', function(req, res) {
-res.json({"message": process.env.MESSAGE_STYLE === 'uppercase' ? "HELLO JSON" : "Hello json"});
+  res.json({"message": process.env.MESSAGE_STYLE === 'uppercase' ? "HELLO JSON" : "Hello json"});
 });
 
 /** 6) Use the .env file to configure the app */
@@ -66,6 +66,14 @@ app.get('/:word/echo', function(req, res, next) {
 /** 10) Get input from client - Query parameters */
 // /name?first=<firstname>&last=<lastname>
 
+app.route('/name')
+  .get(function (req, res, next) {    
+    var firstName = req.query.first;
+    var lastName= req.query.last;
+    res.json({'name': firstName + ' ' + lastName});
+  })
+  .post(function (req, res) {
+});
   
 /** 11) Get ready for POST Requests - the `body-parser` */
 // place it before all the routes !
