@@ -75,6 +75,9 @@ app.route('/name')
     res.json({'name': firstName + ' ' + lastName});
   })
   .post(function (req, res) {
+    var firstName= req.body.first;
+    var lastName= req.body.last;
+    res.json({'name': firstName + ' ' + lastName});
 });
   
 /** 11) Get ready for POST Requests - the `body-parser` */
